@@ -18,4 +18,19 @@ def index(request):
 
 
 def exit(request):
-	pass
+	answer_set = [
+		["XPXXHEPJ", "W@OKJO@O", "XOJXK@XOO"],
+		["XHPK@OHE", "HWXK@XOX", "XF@O@HXJW"],
+		["X@PKJPOF@", "XOEO@FJJ", "XFWXHPXK@"],
+	]
+	if request.session["finishedround2"] == False:
+		set_no = request.POST["question_set"]
+		p = Participant.objects.get(pk=request.session['userid'])
+		for i in range(1,4):
+			if request.POST["answer"+str(i)].upper() == answer_set[i-1]:
+				p.score += 1
+
+		p.save()
+		request.session["finishedround2"] = True
+
+	return render(request, 'r1l2/reaction.html')

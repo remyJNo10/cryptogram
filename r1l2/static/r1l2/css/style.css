@@ -126,5 +126,15 @@ p {
   text-align: center;
 }
 
+#gif {
+   background: #2c3338;
+   background: url("images/finalreaction.gif");
+   background-repeat: no-repeat;
+   margin-top: 35vw;
+   margin-left: 25vw;
+   background-position: center;
+
+}
+
 
 

@@ -42,17 +42,19 @@ def verify(request):
 		 "GOOD THINGS COME TO THOSE WHO WAIT"
 		]
 	]
-	set_no = request.POST["question_set"]
-	print("set no is " ,set_no)
-	p = Participant.objects.get(pk=request.session['userid'])
-	print("first: ", request.POST["answer"+str(1)].upper())
-	print("second: ", answer_set[int(set_no)][1-1])
-	for i in range(1,6):
-		print("index is ", i)
-		if request.POST["answer"+str(i)].upper()  == answer_set[int(set_no)][i-1]:
-			p.score += 1
-	
-	p.save()
+	if request.session["finishedround1"] == False:
+		set_no = request.POST["question_set"]
+		#print("set no is " ,set_no)
+		p = Participant.objects.get(pk=request.session['userid'])
+		#print("first: ", request.POST["answer"+str(1)].upper())
+		#print("second: ", answer_set[int(set_no)][1-1])
+		for i in range(1,6):
+			print("index is ", i)
+			if request.POST["answer"+str(i)].upper()  == answer_set[int(set_no)][i-1]:
+				p.score += 1
+		
+		p.save()
+		request.session["finishedround1"] = True
 	
 	return redirect('/round2/')
 

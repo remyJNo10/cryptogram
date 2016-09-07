@@ -9,6 +9,7 @@
   <title>Cryptogram</title>
 
     <link rel="stylesheet" href="{% static 'r1l2/css/style.css' %}" media="screen" type="text/css" />
+    <link rel="icon" href="{% static 'r1l2/css/images/favicon.png' %}" type="image/png" sizes="16x16">
     <!--link rel="stylesheet" href="{% static 'r1l2/css/font-awesome-4.6.3/css/font-awesome.min.css' %}" media="screen" type="text/css" /-->
     
 
@@ -33,7 +34,7 @@
 
       <div id="login">
 
-        <form action="javascript:void(0);" method="post">
+        <form action="{% url 'r1l2:exit' %}" method="post">
         {% csrf_token %}
 
           <!--fieldset class="clearfix" style="border:0;"-->

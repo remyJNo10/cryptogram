@@ -9,9 +9,13 @@ def ShowLogin(request):
 
 
 def PerformLoginAction(request):
+	if request.POST['participant_name']=="Username" or request.POST['college_name']=="University/College":
+		return redirect("/")
 	participant_entity = Participant(participant_name=request.POST['participant_name'], college_name=request.POST['college_name'])
 	participant_entity.save()
 	request.session["user"]=request.POST['participant_name']
 	request.session["userid"]=participant_entity.id;
+	request.session["finishedround1"]=False
+	request.session["finishedround2"]=False
 	print (request.session["userid"])
 	return redirect('/round1/')
