@@ -6,5 +6,5 @@ app_name = 'login'
 
 urlpatterns = [
     url(r'^$', views.ShowLogin, name='ShowLogin'),
-    url(r'^loginaction$', views.PerformLoginAction, name="PerformLoginAction"),
+    url(r'^loginaction/$', views.PerformLoginAction, name="PerformLoginAction"),
 ]

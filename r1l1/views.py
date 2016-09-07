@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import *
 from django.template import Context
 from login.models import Participant
 import random
@@ -20,6 +21,7 @@ def index(request):
 
 
 def verify(request):
+	print("enters")
 	answer_set = [
 		["THE SQUEAKY WHEEL GETS THE GREASE",
 		 "FORTUNE FAVOURS THE BOLD",
@@ -31,7 +33,7 @@ def verify(request):
 		 "A CHAIN IS ONLY AS STRONG AS ITS WEAKEST LINK",
 		 "DO NOT COUNT YOUR CHICKENS BEFORE THEY HATCH",
 		 "BETTER LATE THAN NEVER",
-		 "BEAUTY IS IN THE EYE OF THE BEHOLDER",
+		 "BEAUTY IS IN THE EYE OF THE BEHOLDER"
 		],
 		["HOPE FOR THE BEST BUT PREPARE FOR THE WORST",
 		 "YOU CANT MAKE AN OMELET WITHOUT BREAKING A FEW EGGS",
@@ -40,16 +42,19 @@ def verify(request):
 		 "GOOD THINGS COME TO THOSE WHO WAIT"
 		]
 	]
-	set_no = request.POST["set_no"]
-	logger = logging.getlogger()
-	logger.debug(str(set_no))
-	p = Participant.objects.filter(pk=request.session['userid'])
-
+	set_no = request.POST["question_set"]
+	print("set no is " ,set_no)
+	p = Participant.objects.get(pk=request.session['userid'])
+	print("first: ", request.POST["answer"+str(1)].upper())
+	print("second: ", answer_set[int(set_no)][1-1])
 	for i in range(1,6):
-		if request.POST["answer"+str(i)].upper  == answer_set[set_no][i]:
+		print("index is ", i)
+		if request.POST["answer"+str(i)].upper()  == answer_set[int(set_no)][i-1]:
 			p.score += 1
+	
 	p.save()
-	return redirect('/lastlevel/')
+	
+	return redirect('/round2/')
 
 
 

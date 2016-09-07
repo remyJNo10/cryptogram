@@ -6,5 +6,5 @@ app_name = 'r1l2'
 
 urlpatterns = [
     url(r'^', views.index, name='index'),
-    url(r'^exit', views.verify, name='verify'),
+    url(r'^exit/', views.exit, name='exit'),
 ]
