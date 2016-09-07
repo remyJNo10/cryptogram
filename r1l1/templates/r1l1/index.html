@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Cryptogram</title>
+
+    <link rel="stylesheet" href="{% static 'r1l1/css/style.css' %}" media="screen" type="text/css" />
+    <!--link rel="stylesheet" href="{% static 'r1l2/css/font-awesome-4.6.3/css/font-awesome.min.css' %}" media="screen" type="text/css" /-->
+    
+
+</head>
+
+<body>
+
+  <html lang="en-US">
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Cryptogram</title>.
+
+    <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700"-->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div id="login">
+
+        <form action="{% url 'r1l1:verify' %}" method="post">
+        {% csrf_token %}
+
+          <!--fieldset class="clearfix" style="border:0;"-->
+          <!--div class="empty_space">
+          </div-->
+          <table>
+            <tr>
+                <td><span style="background:black;color:red;"><strong>CIPHERTEXT</strong></span></td>
+                <td><span style="background:black;color:red;"><strong>CLEARTEXT</strong></span></td>
+                
+            </tr>
+          {% for question in questions %}
+            <tr>
+                <td><span style="background:black;color:lightgreen">{{question}}</span></td>
+                <td><input style="display:inline-block;" autofocus="true" name="answer{{forloop.counter}}" id="answerid{{forloop.counter}}" type="text" /></td>
+            </tr>
+          {% endfor %}
+          </table>
+          <input type="hidden" name="question_set" value="{{set_no}}">
+
+           <p style="padding-left: 25vw"><input type="submit" value="N3XT L3V3L"></p>
+
+          <!--/fieldset-->
+
+        </form>
+
+
+      </div> <!-- end login -->
+
+    <!--/div-->
+
+  </body>
+</html>
+
+</body>
+
+</html>

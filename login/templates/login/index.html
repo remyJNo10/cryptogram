@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Cryptogram</title>
+
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}" media="screen" type="text/css" />
+    <link rel="stylesheet" href="{% static 'login/css/font-awesome-4.6.3/css/font-awesome.min.css' %}" media="screen" type="text/css" />
+    
+
+</head>
+
+<body>
+
+  <html lang="en-US">
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Cryptogram</title>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div id="login">
+
+        <form action="{% url 'login:PerformLoginAction' %}" method="post">
+        {% csrf_token %}
+
+          <fieldset class="clearfix" style="border:0">
+
+            <p><span><i class="fa fa-user" aria-hidden="true"></i></span><input type="text" name="participant_name" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required></p>
+
+            <p><span><i class="fa fa-university" aria-hidden="true"></i></span><input type="text" name="college_name" value="University/College" onBlur="if(this.value == '') this.value = 'University/College'" onFocus="if(this.value == 'University/College') this.value = ''" required></p>
+            
+            <p><input type="submit" value="Enter"></p>
+
+          </fieldset>
+
+        </form>
+
+      </div> <!-- end login -->
+
+    </div>
+
+  </body>
+</html>
+
+</body>
+
+</html>
